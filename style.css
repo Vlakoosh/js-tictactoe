@@ -32,6 +32,8 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+
+    cursor: pointer;
 }
 /* remove borders from edges of board */
 .cell:first-child,
@@ -56,7 +58,9 @@ body {
 
 /* create the x using pseudo-elements */
 .cell.x::before,
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
     content: '';
     width: calc(var(--mark-size)*0.15);
     height: var(--mark-size);
@@ -64,33 +68,53 @@ body {
     position: absolute;
 }
 
-.cell.x::before {
+.cell.x::before,
+.board.x .cell:hover::before {
     transform: rotate(45deg);
 }
 
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:hover::after {
     transform: rotate(-45deg);
 }
 
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+    background-color: #cccccc;
+}
 
 /* create the o using pseudo elements */
 .cell.o::before,
-.cell.o::after {
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
     content: '';
-
     position: absolute;
 }
 
-.cell.o::before {
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
     width: calc(var(--mark-size)*0.9);
     height: calc(var(--mark-size)*0.9);
     border-radius: var(--mark-size);
     background-color: black;
 }
 
-.cell.o::after {
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
     width: calc(var(--mark-size)*0.6);
     height: calc(var(--mark-size)*0.6);
     border-radius: var(--mark-size);
     background-color: whitesmoke;
 }
+
+.board.o .cell:not(.x):not(.o):hover::before {
+    background-color: #cccccc;
+}
+
+
+/* set cursor for taken tiles */
+.cell.x, .cell.o {
+    cursor: not-allowed;
+}
+
