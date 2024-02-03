@@ -1,0 +1,96 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * 0.9);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.board {
+    width: 100vh;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3, auto);
+    justify-items: center;
+    align-items: center;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: whitesmoke;
+    border: 1px solid dimgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+/* remove borders from edges of board */
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.cell:nth-child(3n) {
+    border-right: none;
+}
+/*  */
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8) {
+    border-bottom: none;
+}
+
+/* create the x using pseudo-elements */
+.cell.x::before,
+.cell.x::after {
+    content: '';
+    width: calc(var(--mark-size)*0.15);
+    height: var(--mark-size);
+    background-color: black;
+    position: absolute;
+}
+
+.cell.x::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after {
+    transform: rotate(-45deg);
+}
+
+
+/* create the o using pseudo elements */
+.cell.o::before,
+.cell.o::after {
+    content: '';
+
+    position: absolute;
+}
+
+.cell.o::before {
+    width: calc(var(--mark-size)*0.9);
+    height: calc(var(--mark-size)*0.9);
+    border-radius: var(--mark-size);
+    background-color: black;
+}
+
+.cell.o::after {
+    width: calc(var(--mark-size)*0.6);
+    height: calc(var(--mark-size)*0.6);
+    border-radius: var(--mark-size);
+    background-color: whitesmoke;
+}
