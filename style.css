@@ -23,6 +23,14 @@ body {
     align-items: center;
 }
 
+
+.screen {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
@@ -116,5 +124,34 @@ body {
 /* set cursor for taken tiles */
 .cell.x, .cell.o {
     cursor: not-allowed;
+}
+
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+    opacity: 0.9;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    border: none;
+    border-radius: 0;
+    padding: 15px;
+
+}
+
+.winning-message.show {
+    display: flex;
+
 }
 
