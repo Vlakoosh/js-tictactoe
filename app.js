@@ -1,6 +1,6 @@
 const game = () => {
 
-    let currentSign = "o";
+    let currentSign = "x";
 
     const board = document.querySelector('.board');
     const tiles = document.querySelectorAll('.cell');
